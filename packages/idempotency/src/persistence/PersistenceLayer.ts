@@ -33,10 +33,10 @@ abstract class PersistenceLayer implements PersistenceLayerInterface {
   public async saveInProgress(): Promise<void> { }
   public async saveSuccess(): Promise<void> { }
 
-  protected abstract _deleteRecord(): Promise<void>;
+  protected abstract _deleteRecord(record: IdempotencyRecord): Promise<void>;
   protected abstract _getRecord(idempotencyKey: string): Promise<IdempotencyRecord>;
   protected abstract _putRecord(record: IdempotencyRecord): Promise<void>;
-  protected abstract _updateRecord(): Promise<void>;
+  protected abstract _updateRecord(record: IdempotencyRecord): Promise<void>;
 }
 
 export {
