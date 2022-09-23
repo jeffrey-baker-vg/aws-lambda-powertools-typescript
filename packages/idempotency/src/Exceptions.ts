@@ -6,7 +6,12 @@ class IdempotencyInvalidStatusError extends Error {
 
 }
 
+class IdempotencyItemAlreadyExistsError extends Error{
+
+}
+
 export {
   IdempotencyItemNotFoundError,
-  IdempotencyInvalidStatusError
+  IdempotencyInvalidStatusError,
+  IdempotencyItemAlreadyExistsError
 };
