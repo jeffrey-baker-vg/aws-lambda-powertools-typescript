@@ -1,5 +1,5 @@
-import { IdempotencyInvalidStatusError } from 'Exceptions';
-import { IdempotencyRecordStatus } from 'types/IdempotencyRecordStatus';
+import { IdempotencyInvalidStatusError } from '../Exceptions';
+import { IdempotencyRecordStatus } from '../types/IdempotencyRecordStatus';
 
 class IdempotencyRecord {
 
@@ -19,14 +19,14 @@ class IdempotencyRecord {
       throw new IdempotencyInvalidStatusError();
     }
   }
-    
-  public isExpired(): boolean {
-    return this.expiryTimestamp !== undefined && (Date.now() > this.expiryTimestamp);
-  }
-    
+
   public responseJsonAsObject(): Record<string, unknown> | undefined {
     return this.responseData;
   } 
+    
+  private isExpired(): boolean {
+    return this.expiryTimestamp !== undefined && (Date.now() > this.expiryTimestamp);
+  }
 }
 
 export {
