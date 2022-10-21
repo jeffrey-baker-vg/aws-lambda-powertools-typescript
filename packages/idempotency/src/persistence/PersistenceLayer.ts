@@ -93,7 +93,6 @@ abstract class PersistenceLayer implements PersistenceLayerInterface {
     );
 
     this._updateRecord(idempotencyRecord);
-
   }
 
   protected abstract _deleteRecord(record: IdempotencyRecord): Promise<void>;
