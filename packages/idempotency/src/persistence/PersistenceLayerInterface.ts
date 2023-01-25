@@ -1,7 +1,7 @@
 import { IdempotencyRecord } from './IdempotencyRecord';
-
+import { PersistenceLayerConfigureOptions } from '../types';
 interface PersistenceLayerInterface {
-  configure(functionName: string): void
+  configure(options?: PersistenceLayerConfigureOptions): void
   saveInProgress(data: unknown): Promise<void>
   saveSuccess(data: unknown, result: unknown): Promise<void>
   deleteRecord(data: unknown): Promise<void>

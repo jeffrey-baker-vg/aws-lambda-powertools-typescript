@@ -23,7 +23,7 @@ class DynamoDBPersistenceLayer extends PersistenceLayer {
     this.statusAttr = constructorOptions.statusAttr ?? 'status';
     this.expiryAttr = constructorOptions.expiryAttr ?? 'expiration';
     this.inProgressExpiryAttr = constructorOptions.inProgressExpiryAttr ?? 'in_progress_expiry_attr';
-    this.dataAttr = constructorOptions.data_attr ?? 'data';
+    this.dataAttr = constructorOptions.dataAttr ?? 'data';
   }
 
   protected async _deleteRecord(record: IdempotencyRecord): Promise<void> {
