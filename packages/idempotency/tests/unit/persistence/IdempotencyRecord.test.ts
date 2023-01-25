@@ -1,11 +1,21 @@
+<<<<<<< HEAD
 import { IdempotencyInvalidStatusError } from '../../../src/Exceptions';
 import { IdempotencyRecord } from '../../../src/persistence/IdempotencyRecord';
 import { IdempotencyRecordStatus } from '../../../src/types/IdempotencyRecordStatus';
+=======
+>>>>>>> 0991021a5c0e5b49bc02a36130adfac8151dd2cc
 /**
  * Test IdempotencyRecord class
  *
  * @group unit/idempotency/all
  */
+<<<<<<< HEAD
+=======
+import { IdempotencyInvalidStatusError } from '../../../src/Exceptions';
+import { IdempotencyRecord } from '../../../src/persistence/IdempotencyRecord';
+import { IdempotencyRecordStatus } from '../../../src/types/IdempotencyRecordStatus';
+
+>>>>>>> 0991021a5c0e5b49bc02a36130adfac8151dd2cc
 const mockIdempotencyKey = '123';
 const mockData = undefined;
 const mockInProgressExpiry = 123;

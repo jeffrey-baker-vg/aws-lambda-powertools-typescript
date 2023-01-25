@@ -1,6 +1,11 @@
 import { BinaryToTextEncoding, createHash, Hash } from 'crypto';
 import { IdempotencyRecordStatus } from '../types/IdempotencyRecordStatus';
+<<<<<<< HEAD
 import { EnvironmentVariablesService } from '../EnvironmentVariablesService';
+=======
+import type { PersistenceLayerConfigureOptions } from '../types/PersistenceLayer';
+import { EnvironmentVariablesService } from '../config';
+>>>>>>> 0991021a5c0e5b49bc02a36130adfac8151dd2cc
 import { IdempotencyRecord } from './IdempotencyRecord';
 import { PersistenceLayerInterface } from './PersistenceLayerInterface';
 
@@ -10,22 +15,48 @@ abstract class PersistenceLayer implements PersistenceLayerInterface {
   private envVarsService!: EnvironmentVariablesService;
 
   private expiresAfterSeconds: number;
+<<<<<<< HEAD
 
   private functionName: string = '';
 
   private hashDigest: BinaryToTextEncoding;
 
   private hashFunction: string;
+=======
+  
+  private hashDigest: BinaryToTextEncoding;
+  
+  private hashFunction: string;
+  
+  private idempotencyKeyPrefix: string;
+>>>>>>> 0991021a5c0e5b49bc02a36130adfac8151dd2cc
 
   public constructor() { 
     this.setEnvVarsService();
     this.expiresAfterSeconds = 60 * 60; //one hour is the default expiration
     this.hashFunction = 'md5';
     this.hashDigest = 'base64';
+<<<<<<< HEAD
         
   }
   public configure(functionName: string = ''): void {
     this.functionName = this.getEnvVarsService().getLambdaFunctionName() + '.' + functionName;
+=======
+    this.idempotencyKeyPrefix = this.getEnvVarsService().getFunctionName();
+
+  }
+
+  /**
+   * Configures the persistence layer by passing the name of the idempotent function. This will be used
+   * in the prefix of the idempotency key
+   * 
+   * @param {PersistenceLayerConfigureOptions} options - configuration object for the persistence layer
+   */
+  public configure(options?: PersistenceLayerConfigureOptions): void {
+    if (options?.functionName && options.functionName.trim() !== '') {
+      this.idempotencyKeyPrefix = `${this.idempotencyKeyPrefix}.${options.functionName}`;
+    }
+>>>>>>> 0991021a5c0e5b49bc02a36130adfac8151dd2cc
   }
 
   /**
@@ -136,7 +167,11 @@ abstract class PersistenceLayer implements PersistenceLayerInterface {
       console.warn('No data found for idempotency key');
     }
     
+<<<<<<< HEAD
     return this.functionName + '#' + this.generateHash(JSON.stringify(data));
+=======
+    return `${this.idempotencyKeyPrefix}#${this.generateHash(JSON.stringify(data))}`;
+>>>>>>> 0991021a5c0e5b49bc02a36130adfac8151dd2cc
   }
 
   /**
